@@ -124,6 +124,14 @@ func LoadDatabaseConfig(cf *conf.ConfigFile) (*db.DatabaseConfig, error) {
 		c.SlavePort = -1
 	}
 	c.SlaveHost = getDbConfigString("slave_host", "")
+
+    c.ClusterMode = getDbConfigString("cluster_mode", "off")
+    if c.ClusterMode == "on" {
+        c.Cluster1 = getDbConfigString("cluster1", ":")
+        c.Cluster2 = getDbConfigString("cluster2", ":")
+        c.Cluster3 = getDbConfigString("cluster3", ":")
+    }
+
 	c.Password = getDbConfigString("password", "")
 	i, e := cf.GetInt("Database", "everysec")
 	// TODO: Change condition to < 60 or change assignment to c.EverySec = 60?

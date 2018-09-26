@@ -45,6 +45,7 @@ func main() {
 	}
 	installPushServices()
 
+    print("test OK\n")
 	err := Run(*uniqushPushConfFlags, uniqushPushVersion)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Cannot start: %v\n", err)

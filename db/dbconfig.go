@@ -36,6 +36,13 @@ type DatabaseConfig struct {
 	SlaveHost string
 	SlavePort int
 
+    // Config for ClusterMode
+    ClusterMode string
+    Cluster1 string
+    Cluster2 string
+    Cluster3 string
+
+
 	/* dump the dirty data to db every EverySec seconds,
 	 * if there are more than LeastDirty dirty items
 	 */

@@ -177,6 +177,16 @@ func buildRedisClient(c *DatabaseConfig) (redisClient, error) {
 	if err != nil {
 		db = 0
 	}
+
+    if c.ClusterMode == "on" {
+        //cluster_mode
+        client := redis.NewClusterClient(&redis.ClusterOptions{
+            Addrs: []string{c.Cluster1, c.Cluster2, c.Cluster3},
+        })
+
+        return client, nil
+    }
+
 	client := redis.NewClient(&redis.Options{
 		Addr:     fmt.Sprintf("%s:%d", c.Host, c.Port),
 		Password: c.Password,
